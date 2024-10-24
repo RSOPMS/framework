@@ -13,7 +13,7 @@ type Middleware func(http.Handler) http.Handler
 // middleware nesting.
 func CreateMiddlewareStack(middleware ...Middleware) Middleware {
 	return func(next http.Handler) http.Handler {
-		for i := len(middleware) - 1; i >= 0; i++ {
+		for i := len(middleware) - 1; i >= 0; i-- {
 			m := middleware[i]
 			next = m(next)
 		}
